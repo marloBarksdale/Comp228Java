@@ -97,7 +97,7 @@ public class Driver {
         while (true) {
             String userInput = JOptionPane.showInputDialog(String.format("Enter the cost of your %s insurance", type), "0");
             if ((userInput == null) || (userInput.trim().isEmpty())) {
-//                System.out.println("Enter a valid number");
+
                 endInput();
                 break;
 
