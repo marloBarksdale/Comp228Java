@@ -96,8 +96,8 @@ public class Driver {
             } else if (isNumeric(userInput)) {
                 cost = Double.parseDouble(userInput);
                 break;
-            } else  {
-               JOptionPane.showMessageDialog(null,"Please enter a valid number");
+            } else   {
+               JOptionPane.showMessageDialog(null,"Please enta valid number");
                continue;
             }
 
