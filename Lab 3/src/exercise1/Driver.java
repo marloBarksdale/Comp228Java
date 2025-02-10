@@ -11,16 +11,25 @@ public class Driver {
 
     public static void main(String[] args) {
 
+
+        createInsuranceList();
+    }
+
+
+    public static void createInsuranceList() {
+
         while (true) {
             String type = getUserInsuranceTypeInput();
             if (type != null) {
 
                 double cost = getUserInsuranceCostInput(type);
 
-            }else{
+                Insurance insurance = type.equalsIgnoreCase("Health") ? new Health(cost) : new Life(cost);
+                insuranceList.add(insurance);
+
+            } else {
                 break;
             }
-
 
 
         }
@@ -83,22 +92,26 @@ public class Driver {
     public static double getUserInsuranceCostInput(String type) {
 
 
-        String userInput = JOptionPane.showInputDialog(String.format("Enter the cost of your %s insurance", type), "0");
         double cost = 0;
 
-        while(true){
-
+        while (true) {
+            String userInput = JOptionPane.showInputDialog(String.format("Enter the cost of your %s insurance", type), "0");
             if ((userInput == null) || (userInput.trim().isEmpty())) {
 //                System.out.println("Enter a valid number");
                 endInput();
                 break;
 
             } else if (isNumeric(userInput)) {
+
                 cost = Double.parseDouble(userInput);
+                if (cost <= 0) {
+                    JOptionPane.showMessageDialog(null, "Cost cannot be negative or zero");
+                    continue;
+                }
                 break;
-            } else   {
-               JOptionPane.showMessageDialog(null,"Please enta valid number");
-               continue;
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter valid number");
+
             }
 
 
