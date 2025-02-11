@@ -15,7 +15,10 @@ public class Health extends Insurance {
     }
 
     @Override
-    public void displayInfo() {
-
+    public String displayInfo() {
+        return this.toString();
     }
+
+
+
 }

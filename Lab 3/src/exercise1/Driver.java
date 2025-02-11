@@ -24,8 +24,16 @@ public class Driver {
 
                 double cost = getUserInsuranceCostInput(type);
 
+                if (cost == 0) {
+                    break;
+                }
                 Insurance insurance = type.equalsIgnoreCase("Health") ? new Health(cost) : new Life(cost);
+
+                //Call to show polymorphism
+                insurance.setInsuranceCost(cost);
+
                 insuranceList.add(insurance);
+                JOptionPane.showMessageDialog(null, insurance.displayInfo(), "Successfully Added.", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 break;
@@ -41,7 +49,7 @@ public class Driver {
     public static void endInput() {
 
         int listSize = insuranceList.size();
-        String message = String.format("%d insurance successfully added!", listSize);
+        String message = listSize > 0 ? String.format("%d insurance successfully added!", listSize) : "You did not insert any data";
         JOptionPane.showMessageDialog(null, message);
 
 
@@ -62,28 +70,27 @@ public class Driver {
 
         String type = null;
         while (true) {
-            type = JOptionPane.showInputDialog("Enter the insurance type. Life or Health. Program will end if nothing is entered");
+            type = JOptionPane.showInputDialog("Enter Life or Health for the insurance type. \nHitting cancel or living the textbox blank will cancel the program.");
             if ((type == null) || (type.trim().isEmpty())) {
-
+                //Call end input if the user hits cancel or enters an empty string
+                type = null;
                 endInput();
                 break;
-
             } else if (type.trim().equalsIgnoreCase("LIFE")) {
                 break;
             } else if (type.trim().equalsIgnoreCase("HEALTH")) {
                 break;
             } else {
+
                 JOptionPane.showMessageDialog(null, "Enter a valid insurance name. Life or Health");
-                continue;
+
             }
         }
 
-        if (type == null) {
-            return type;
-        } else {
+        if (type != null) {
             type = type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
-            return type;
         }
+        return type;
 
 
     }
@@ -96,8 +103,10 @@ public class Driver {
 
         while (true) {
             String userInput = JOptionPane.showInputDialog(String.format("Enter the cost of your %s insurance", type), "0");
-            if ((userInput == null) || (userInput.trim().isEmpty())) {
 
+
+            if ((userInput == null) || (userInput.trim().isEmpty())) {
+                //Call end input if the user hits cancel or enters an empty string
                 endInput();
                 break;
 

@@ -12,7 +12,7 @@ public abstract class Insurance {
         this.monthlyCost = monthlyCost;
     }
 
-    public String getTypeOfInsurance(){
+    public String getTypeOfInsurance() {
         return typeOfInsurance;
     }
 
@@ -24,8 +24,11 @@ public abstract class Insurance {
 
     public abstract void setInsuranceCost(double cost);
 
-    public abstract void displayInfo();
+    public abstract String displayInfo();
 
 
+    public String toString() {
 
+        return typeOfInsurance + "\n" + String.format("$%.2f", monthlyCost);
+    }
 }

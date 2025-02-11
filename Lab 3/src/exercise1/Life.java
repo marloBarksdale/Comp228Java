@@ -16,7 +16,7 @@ public class Life extends Insurance {
     }
 
     @Override
-    public void displayInfo() {
-
+    public String displayInfo() {
+        return this.toString();
     }
 }
