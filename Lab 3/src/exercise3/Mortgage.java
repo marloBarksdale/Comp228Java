@@ -13,9 +13,11 @@ public abstract class Mortgage implements MortgageConstants {
     public Mortgage(int mortgageNumber, String customerName, double mortgageAmount, int mortgageTerm, double interestRate) {
         this.mortgageNumber = mortgageNumber;
         this.customerName = customerName;
-        this.mortgageAmount = mortgageAmount;
-        this.mortgageTerm = mortgageTerm;
+        setMortgageAmount(mortgageAmount);
+        setMortgageTerm(mortgageTerm);
         this.interestRate = interestRate;
+
+
     }
 
     public int getMortgageNumber() {
@@ -70,8 +72,26 @@ public abstract class Mortgage implements MortgageConstants {
         this.interestRate = interestRate;
     }
 
+    public double calculateTotalAmountOwed() {
+        return mortgageAmount + (mortgageAmount * interestRate * mortgageTerm);
+    }
+
     public String toString() {
 
-        String.format("")
+        // Check the instance of mortgage for output
+        String mortgageType;
+        if (this instanceof BusinessMortgage) {
+            mortgageType = "Business Mortgage";
+        } else {
+            mortgageType = "Personal Mortgage";
+        }
+
+        System.out.println("\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n\n");
+        return String.format("Details for your %s number: %s.\n" +
+                "Customer name: %s\n" +
+                "Amount: $%.2f\n" +
+                "Interest rate: %.2f%%\n" +
+                "Mortgage Term: %d\n" +
+                "Total owed:$%.2f", mortgageType, mortgageNumber, customerName, mortgageAmount, interestRate * 100, mortgageTerm, calculateTotalAmountOwed());
     }
 }

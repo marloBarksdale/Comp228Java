@@ -29,6 +29,6 @@ public abstract class Insurance {
 
     public String toString() {
 
-        return typeOfInsurance + "\n" + String.format("$%.2f", monthlyCost);
+        return typeOfInsurance + "     " + String.format(" $%.2f", monthlyCost);
     }
 }

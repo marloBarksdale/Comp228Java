@@ -13,6 +13,19 @@ public class Driver {
 
 
         createInsuranceList();
+        String s = "";
+
+
+       if(!insuranceList.isEmpty())  {
+           for (Insurance insurance : insuranceList){
+               s += insurance.toString() + "\n";
+           }
+           JOptionPane.showMessageDialog(null, s);
+        }
+
+
+
+
     }
 
 
