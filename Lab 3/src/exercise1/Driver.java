@@ -43,8 +43,6 @@ public class Driver {
         int listSize = insuranceList.size();
         String message = String.format("%d insurance successfully added!", listSize);
         JOptionPane.showMessageDialog(null, message);
-
-
     }
 
 
